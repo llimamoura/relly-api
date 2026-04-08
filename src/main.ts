@@ -47,7 +47,13 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  SwaggerModule.setup('api/docs', app, document, {
+    customSiteTitle: 'Relly API',
+    swaggerOptions: {
+      persistAuthorization: true,
+      url: '/api/docs-json',
+    },
+  })
 
   await app.listen(process.env['PORT'] ?? 3000);
 }
