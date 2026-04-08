@@ -24,18 +24,6 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.setGlobalPrefix('api');
-
-  app.useGlobalFilters(new AllExceptionsFilter());
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-    }),
-  );
-
   const config = new DocumentBuilder()
     .setTitle('Relly API')
     .setDescription('API de gestão financeira compartilhada')
@@ -53,7 +41,19 @@ async function bootstrap() {
       persistAuthorization: true,
       url: '/api/docs-json',
     },
-  })
+  });
+
+  app.setGlobalPrefix('api');
+
+  app.useGlobalFilters(new AllExceptionsFilter());
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
   await app.listen(process.env['PORT'] ?? 3000);
 }
