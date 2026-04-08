@@ -1,6 +1,6 @@
 services:
   api:
-    image: ghcr.io/SEU_USUARIO_GITHUB/relly-api:latest
+    image: ghcr.io/llimamoura/relly-api:latest
     container_name: relly-api
     restart: always
     ports:
